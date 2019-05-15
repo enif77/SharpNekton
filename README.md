@@ -5,7 +5,7 @@ Sharp Nekton is a small embedable language for .NET.
 A very old piece of code I just (2019-05-15) retrieved from my archives.
 It is incomplete and without any documentation. I'll revive it over time...
 
-The most interesting part here is the evaluator. It is stack based virtual machine,
+The most interesting part here is the evaluator. It is a stack based virtual machine,
 that uses as-a-class implemented opcodes, without using any kind of a bytecode. 
 It makes the evaluator very simple and effective.
 
