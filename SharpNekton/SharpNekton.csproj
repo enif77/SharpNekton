@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0C15FD78-5809-48EA-BDE0-8DF0BBDB1E2A}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SharpNekton</RootNamespace>
+    <AssemblyName>SharpNekton</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Compiler\LocalsStack.cs" />
+    <Compile Include="Compiler\Parser.cs" />
+    <Compile Include="Compiler\Token.cs" />
+    <Compile Include="Compiler\Tokenizer.cs" />
+    <Compile Include="Evaluator\Evaluator.cs" />
+    <Compile Include="Evaluator\OpCodeList.cs" />
+    <Compile Include="Evaluator\Stack.cs" />
+    <Compile Include="Shared\ExternalFunctionRef.cs" />
+    <Compile Include="Evaluator\FunctionRef.cs" />
+    <Compile Include="Libraries\ALibrary.cs" />
+    <Compile Include="Libraries\BaseLib.cs" />
+    <Compile Include="Libraries\MathLib.cs" />
+    <Compile Include="Shared\ObjectList.cs" />
+    <Compile Include="Evaluator\OpCodes\ABooleanOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\ACountOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\AddOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\AFunctionRefOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\AndOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\ANumericOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\AOffsetOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\AOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\APointerOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\AppendTableDataAutoKeyOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\AppendTableDataOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\AStorePointerOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\AStringOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\BeginTableDataOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\CopyDataOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\DivIOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\DivOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\EndOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\EndTableDataOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\EvalOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\ForeachStoreOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\GetArgOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\GetValOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\HasValueOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\ImportOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\IncludeOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\IsEqualOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\IsFalseOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\IsGreatherOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\IsGreatherOrEqualOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\IsInOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\IsNotEqualOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\IsNotSameOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\IsSameOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\IsSmallerOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\IsSmallerOrEqualOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\JSROpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\JumpIfDoneOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\JumpIfFalseOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\JumpIfTrueOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\JumpOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\LinkOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\LoadBOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\LoadFPOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\LoadFunctionOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\LoadIOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\LoadNOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\LoadNullOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\LoadSOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\LoadStorOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\LoadUndefinedOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\ModOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\MulOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\NegOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\NewTableOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\NextKeyOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\NextOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\NopOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\NotOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\OrOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\PopNOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\PostDecrOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\PostIncrOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\PowOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\PreDecrOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\PreIncrOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\PrintOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\PushOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\PushPOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\ReturnFromSubroutineOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\RewindOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\SizeOfOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\StoreOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\StrCatOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\SubEndOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\SubOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\ToBooleanOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\ToNumberOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\ToObjectOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\ToStringOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\TypeOfOpCode.cs" />
+    <Compile Include="Evaluator\OpCodes\UnlinkOpCode.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shared\SharpNektonError.cs" />
+    <Compile Include="Shared\SharpNektonException.cs" />
+    <Compile Include="ScriptState.cs" />
+    <Compile Include="Compiler\Sources\ASource.cs" />
+    <Compile Include="Compiler\Sources\FileSource.cs" />
+    <Compile Include="Compiler\Sources\StringSource.cs" />
+    <Compile Include="Shared\Tools.cs" />
+    <Compile Include="Evaluator\ValueStore.cs" />
+    <Compile Include="Evaluator\Values\BooleanValue.cs" />
+    <Compile Include="Evaluator\Values\DoneValue.cs" />
+    <Compile Include="Evaluator\Values\ExternalFunctionRefValue.cs" />
+    <Compile Include="Evaluator\Values\FunctionRefValue.cs" />
+    <Compile Include="Evaluator\Values\IValue.cs" />
+    <Compile Include="Evaluator\Values\NullValue.cs" />
+    <Compile Include="Evaluator\Values\NumericValue.cs" />
+    <Compile Include="Evaluator\Values\ObjectValue.cs" />
+    <Compile Include="Evaluator\Values\ProgramRefValue.cs" />
+    <Compile Include="Evaluator\Values\RTSAValue.cs" />
+    <Compile Include="Evaluator\Values\STFPValue.cs" />
+    <Compile Include="Evaluator\Values\StoreRefValue.cs" />
+    <Compile Include="Evaluator\Values\StringValue.cs" />
+    <Compile Include="Evaluator\Values\TableDataRefValue.cs" />
+    <Compile Include="Evaluator\Values\TableRefValue.cs" />
+    <Compile Include="Evaluator\Values\UndefinedValue.cs" />
+    <Compile Include="Evaluator\Values\ValueType.cs" />
+    <Compile Include="Evaluator\ValueTable.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Docs\index.html" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <title>SharpNekton</title>
+</head>
+
+<body>
+<h1>SharpNekton</h1>
+
+<p>Small embedable language for .NET.</p>
+
+<h2>Tokens</h2>
+
+<table style="border: 1px; border-color: black; border-style: solid">
+    <thead>
+    <tr><th>Token ID</th><th>Description</th></tr>
+    </thead>
+
+    <tbody>
+        <tr><td>T_UNKNOWN</td> <td>An unknown token.</td></tr>
+        <tr><td>T_EOF</td> <td>The end of a source.</td></tr>
+        <tr><td>T_NUMBER</td> <td>A double (real) number.</td></tr>
+        <tr><td>T_IDENTIFIER</td> <td>An identifier.</td></tr>
+        <tr><td>T_STRING_LIT</td> <td>A string literal.</td></tr>
+
+        <tr><td>T_OP</td> <td>The begining of the operators group. Not a real token, used by the compiler only.</td></tr>
+        <tr><td>T_ADD_OP</td> <td>'+'</td></tr>
+        <tr><td>T_SUB_OP</td> <td>'-'</td></tr>
+        <tr><td>T_MUL_OP</td> <td>'*'</td></tr>
+        <tr><td>T_DIV_OP</td> <td>'/'</td></tr>
+        <tr><td>T_MOD_OP</td> <td>'%'</td></tr>
+        <tr><td>T_POW_OP</td> <td>'**'</td></tr>
+        <tr><td>T_IS_EQUAL_OP</td> <td>'=='</td></tr>
+        <tr><td>T_IS_NOT_EQUAL_OP</td> <td>'!='</td></tr>
+        <tr><td>T_IS_SAME_OP</td> <td>'==='</td></tr>
+        <tr><td>T_IS_NOT_SAME_OP</td> <td>'!=='</td></tr>
+        <tr><td>T_IS_SMALLER_OP</td> <td>&lt;</td></tr>
+        <tr><td>T_IS_SMALLER_OR_EQUAL_OP</td> <td>&lt;=</td></tr>
+        <tr><td>T_IS_GREATHER_OP</td> <td>&gt;</td></tr>
+        <tr><td>T_IS_GREATHER_OR_EQUAL_OP</td> <td>&gt;=</td></tr>
+        <tr><td>T_NOT_OP</td> <td>'!'</td></tr>
+        <tr><td>T_OR_OP</td> <td>'||'</td></tr>
+        <tr><td>T_AND_OP</td> <td>'&amp;&amp;'</td></tr>
+
+        <tr><td>T_B_OR_OP</td> <td>'|' (UNUSED)</td></tr>
+
+        <tr><td>T_DOT_OP</td> <td>'.'</td></tr>
+        <tr><td>T_STRCAT_OP</td> <td>'..'</td></tr>
+        <tr><td>T_DECR_OP</td> <td>'--'</td></tr>
+        <tr><td>T_INCR_OP</td> <td>'++'</td></tr>
+        <tr><td>T_DATAASGN_OP</td> <td>'=&gt;'</td></tr>
+        <tr><td>T_TER_ASK_OP</td> <td>'?'</td></tr>
+        <tr><td>T_COPYDATA_OP</td> <td>'&amp;'</td></tr>
+        <tr><td>T_HAS_VALUE_OP</td> <td>'??'</td></tr>
+        <tr><td>T_IS_FALSE_OP</td> <td>'?!'</td></tr>
+        <tr><td>T_OP_END</td> <td>The end of the operators group. Not a real token, used by the compiler only.</td></tr>
+
+        <tr><td>T_AOP</td> <td>The begining of the assign operators group. Not a real token, used by the compiler only.</td></tr>
+        <tr><td>T_ASSIGN_OP</td> <td>'='</td></tr>
+        <tr><td>T_ADD_ASSIGN_OP</td> <td>'+='</td></tr>
+        <tr><td>T_SUB_ASSIGN_OP</td> <td>'-='</td></tr>
+        <tr><td>T_MUL_ASSIGN_OP</td> <td>'*='</td></tr>
+        <tr><td>T_DIV_ASSIGN_OP</td> <td>'/='</td></tr>
+        <tr><td>T_MOD_ASSIGN_OP</td> <td>%='</td></tr>
+        <tr><td>T_POW_ASSIGN_OP</td> <td>'**='</td></tr>
+        <tr><td>T_STRCAT_ASSIGN_OP</td> <td>'..='</td></tr>
+        <tr><td>T_AOP_END</td> <td>The end of the assign operators group. Not a real token, used by the compiler only.</td></tr>
+
+        <tr><td>T_LPAREN</td> <td>'('</td></tr>
+        <tr><td>T_RPAREN</td> <td>')'</td></tr>
+        <tr><td>T_LBRAC</td> <td>'['</td></tr>
+        <tr><td>T_RBRAC</td> <td>']'</td></tr>
+        <tr><td>T_COLON</td> <td>':'</td></tr>
+        <tr><td>T_COMMA</td> <td>','</td></tr>
+        <tr><td>T_STAT_END</td> <td>';'</td></tr>
+        <tr><td>T_BLOCK_START</td> <td>'{'</td></tr>
+        <tr><td>T_BLOCK_END</td> <td>'}'</td></tr>
+        <tr><td>T_ELLIPSIS</td> <td>'...'</td></tr>
+
+        <tr><td>T_KEY_AND</td> <td>"and"</td></tr>
+        <tr><td>T_KEY_ARG</td> <td>"arg"</td></tr>
+        <tr><td>T_KEY_AS</td> <td>"as"</td></tr>
+        <tr><td>T_KEY_BOOLEAN</td> <td>"boolean"</td></tr>
+        <tr><td>T_KEY_BREAK</td> <td>"break"</td></tr>
+        <tr><td>T_KEY_BUT</td> <td>"but"</td></tr>
+        <tr><td>T_KEY_CONTINUE</td> <td>"continue"</td></tr>
+        <tr><td>T_KEY_DIV</td> <td>"div"</td></tr>
+        <tr><td>T_KEY_DO</td> <td>"do"</td></tr>
+        <tr><td>T_KEY_ELSE</td> <td>"else"</td></tr>
+        <tr><td>T_KEY_END</td> <td>"end"</td></tr>
+        <tr><td>T_KEY_EVAL</td> <td>"eval"</td></tr>
+        <tr><td>T_KEY_EXIT</td> <td>"exit"</td></tr>
+        <tr><td>T_KEY_FALSE</td> <td>"false"</td></tr>
+        <tr><td>T_KEY_FOR</td> <td>"for"</td></tr>
+        <tr><td>T_KEY_FOREACH</td> <td>"foreach"</td></tr>
+        <tr><td>T_KEY_FUNCTION</td> <td>"function"</td></tr>
+        <tr><td>T_KEY_IF</td> <td>"if"</td></tr>
+        <tr><td>T_KEY_IMPORT</td> <td>"import"</td></tr>
+        <tr><td>T_KEY_IN</td> <td>"in"</td></tr>
+        <tr><td>T_KEY_INCLUDE</td> <td>"include"</td></tr>
+        <tr><td>T_KEY_LOCAL</td> <td>"local"</td></tr>
+        <tr><td>T_KEY_NULL</td> <td>"null"</td></tr>
+        <tr><td>T_KEY_NUMBER</td> <td>"number"</td></tr>
+        <tr><td>T_KEY_OBJECT</td> <td>"object"</td></tr>
+        <tr><td>T_KEY_OR</td> <td>"or"</td></tr>
+        <tr><td>T_KEY_PRINT</td> <td>"print"</td></tr>
+        <tr><td>T_KEY_RETURN</td> <td>"return"</td></tr>
+        <tr><td>T_KEY_SIZEOF</td> <td>"sizeof"</td></tr>
+        <tr><td>T_KEY_STRING</td> <td>"string"</td></tr>
+        <tr><td>T_KEY_TRUE</td> <td>"true"</td></tr>
+        <tr><td>T_KEY_TYPEOF</td> <td>"typeof"</td></tr>
+        <tr><td>T_KEY_UNDEFINED</td> <td>"undefined"</td></tr>
+        <tr><td>T_KEY_WHILE</td> <td>"while"</td></tr>
+    </tbody>
+</table>
+
+</body>
+</html>
