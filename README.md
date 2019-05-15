@@ -9,6 +9,219 @@ The most interesting part here is the evaluator. It is stack based virtual machi
 that uses as-a-class implemented opcodes, without using any kind of a bytecode. 
 It makes the evaluator very simple and effective.
 
+## Syntax
+
+<pre>
+#  - A comment.
+{} - Repeat 0 or more.
+() - Groups things together.
+[] - An optional part.
+|  - Or.
+&  - And.
+!  - Not.
+:  - A definition name and its definition separator.
+-  - No white spaces allowed.
+"" - A specific string (keyword etc.).
+'' - A specific character.
+.. - A range.
+.  - The end of a definition.
+
+program : program-block .
+
+program-block : { statement } .
+
+statement ::
+    assignment-statement |
+    compound-statement |
+    if-statement |
+    while-statement |
+    do-statement |
+    for-statement |
+    foreach-statement |
+    break-statement |
+    continue-statement |
+    return-statement |
+    end-statement |
+    exit-statement |
+    include-statement |
+    import-statement |
+    eval-statement |
+    function-statement |
+    local-variable-declaration |
+    print-statement |
+    empty-statement .
+
+compound-statement : '{' { statement } '}' .
+
+eval-statement : "eval" expression ';' .
+
+import-statement : "import" expression ';' .
+
+include-statement : "include" expression ';' .
+
+print-statement : "print" [ expression ] ';' .
+
+exit-statement : "exit" expression ';' .
+
+end-statement : "end" ';' .
+
+return-statement : "return" [ expression ] ';' .
+
+continue-statement : "continue" ';' .
+
+break-statement : "break" ';' .
+
+foreach-statement :
+    "foreach" '(' expression "as" expression [ ',' expression ] ')' statement .
+
+for-statement : 
+    "for" '(' [expr-init] ';' [expr-cond] ';' [expr-incr] ')' statement .
+
+expr-init : expression .
+
+expr-cond : expression .
+
+expr-incr : expression .
+
+do-statement : "do" statement "while" condition ';' .
+
+condition :: '(' expression ')' .
+
+while-statement : "while" condition statement .
+
+if-statement : "if" condition true-statement [ "else" false-statement ] .
+
+assignment-statement : expression ';' .
+
+function-declaration : "function" [ identifier ] formal-parameter-list block .
+
+formal-parameter-list : '(' [ formal-parameter { ',' formal-parameter } ] ')' .
+
+formal-parameter : identifier .
+
+block : '{' { statement } '}' | assignment-statement .
+
+local-variable-declaration : "local" local-variable-declaration-list ';' .
+
+local-variable-declaration-list :
+    identifier [ '=' expression ] { ',' identifier [ '=' expression ] } .
+
+expression : but-expression .
+
+but-expression : assignment-expression [ but-op expression ] .
+
+but-op : "but" .
+
+assignment-expression : conditional-expression [ assignment-operator expression ] .
+
+assignment-operator : '=' | '+=' | '-=' | '*=' | '/=' | '%=' | '**=' .
+
+conditional-expression : ask-expression [ '?' expression ':' expression ] .
+
+ask-expression : logical-or-expression [ ask-operator ask-expression ] .
+
+ask-operator : '??' | '?!' .
+
+logical-or-expression : 
+    logical-for-expression { logical-or-operator logical-for-expression } .
+
+logical-or-operator : '||' .
+
+logical-for-expression : 
+    logical-and-expression { logical-for-operator logical-and-expression } .
+
+logical-for-operator : 'or' .
+
+logical-and-expression : 
+    logical-fand-expression { logical-and-operator logical-fand-expression } .
+
+logical-and-operator : '&&' .
+
+logical-fand-expression : 
+    equality-expression { logical-fand-operator equality-expression } .
+
+logical-fand-operator : 'and' .
+
+equality-expression : 
+    relational-expression { equality-operator relational-expression } .
+
+equality-operator : '==' | '!=' | '===' | '!==' .
+
+relational-expression :
+    multiplicative-expression { relational-operator multiplicative-expression } .
+
+relational-operator : '<' | '<=' | '>' | '>=' | "in" .
+
+additive-expression : 
+    multiplicative-expression { additional-operator multiplicative-expression } .
+
+additional-operator : '+' | '-' | '..' .
+
+multiplicative-expression :
+    pow-expression { multiplicative-operator pow-expression } .
+
+multiplicative-operator : '*' | '/' | '%' | "div" .
+
+pow-expression : has-value-expression { pow-operator has-value-expression } .
+
+pow-operator : '**' .
+
+cast-expression :
+    unary-expression |
+    '(' type-name ')' cast-expression |
+    '(' assignment-expression ')' .
+
+unary-expr :
+    postfix-expression |
+    '++' unary-expression |
+    '--' unary-expression |
+    unary-operator cast-expression |
+    data-expression |
+    arg '(' expression ')' |
+    typeof '(' unary-expression ')' |
+    sizeof '(' unary-expression ')' |
+    "function" [ identifier ] formal-parameters-list block [postfix-operator] .
+    
+unary-operator : '&' | '+' | '-' | '!' | '@' .
+
+data-expression : '[' [ table-value-list ] ']' .
+    
+table-value-list : table-value { ',' table-value } .
+
+table-value : [ key '=>' ] value .
+
+key : expression .
+
+value : expression .
+
+postfix-expression : primary-expression [ postfix-operator ] .
+
+postfix-operator :
+    '[' expression ']' { postfix-operator } |
+    '.' identifier { postfix-operator } |
+    '(' parameters-list ')' { postfix-operator } |
+    '++' |
+    '--' .
+
+primary-expr :
+    "undefined" |
+    "null" |
+    "false" |
+    "true" |
+    numeric-constant |
+    string-literal |
+    identifier |
+    '(' expression ')' |
+    function-declaration-operator .
+
+identifier : variable-identifier .
+
+parameter-list : '(' [ parameter { ',' parameter } ] ')' .
+
+parameter : expression .
+
+</pre>
+
 ## License
 
 ### BasicBasic - (C) 2019 Premysl Fara 
